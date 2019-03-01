@@ -20,6 +20,5 @@ deploy:
   file: marketplace-di/target/pentaho-marketplace-di-*.jar
   on:
     repo: HiromuHota/marketplace
-    tags: true
   name: webSpoon/nightly
   prerelease: true
