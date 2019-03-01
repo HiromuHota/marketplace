@@ -11,7 +11,7 @@ script:
 before_deploy:
 - git config --local user.name "Hiromu Hota"
 - git config --local user.email "hiromu.hota@hal.hitachi.com"
-- git tag webspoon/nightly
+- git tag webspoon/nightly --force
 deploy:
   provider: releases
   api_key:
