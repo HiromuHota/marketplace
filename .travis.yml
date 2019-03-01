@@ -1,0 +1,25 @@
+language: java
+sudo: false
+jdk: oraclejdk8
+cache:
+  directories:
+  - "$HOME/.m2"
+install: true
+script:
+  - wget https://raw.githubusercontent.com/pentaho/maven-parent-poms/master/maven-support-files/settings.xml
+  - mvn -s settings.xml clean package -pl marketplace-di
+before_deploy:
+- git config --local user.name "Hiromu Hota"
+- git config --local user.email "hiromu.hota@hal.hitachi.com"
+- git tag webspoon/nightly
+deploy:
+  provider: releases
+  api_key:
+    secure: V9bRzuQumqAGG+4zvR3EMF1/0MpDoZW47xYCu6FTYq1LstTrcxo+EwKO4t3fDTyCJDSR8MkTWt5V3bG5u545p7kT/WOTxWv1/INgyelxdyObZJrikvM0bEEDT06AWEYxFwFS08v9eqa0u+RZATFC0SzYc6kUtCUBWvUBogPufMcPPSZV6W1MBWATN8P8a1WGF+herA+11eGPXqE4ipVWzzEuO8d+QIbb0vOQLK050SUygDiKx8ZX8TiPQ91//mBDxS43YOWREzJSwHGIE3wHa6QflmSADDULKX7PiOW67WlxBllZ+SsrDEEtiSRS7/2svGbcwgMyextGWSya43ig+vaRBtdKc7o9zcy6yq5vFk8QlyHDx5kXOn/d3mrsmiBT9MpRWJE82fuHt3I7JUG8cTpLQB/XM9riMQQPgTNvIYwNZcS4kX8QDanF492icofgRHjljB1kPFGNsyphyVqIzgr+xw9+iBW0BioAwP8+wQvzxcGJt98AuNYxWhwdHw7YE2IoKwPK1Iyu7z6EmBJJlW4cmmsdHkvAwIbdY0sI1NksLDItI/V2Cb9iq+8zB7psa4VQGQ2tOxGlIAaVJzACyUrytpk0SGy9mhpAODHyFWewaN2c/LLVumxQsRDMlSK5sNwKTHEh6cFsxV0m4A83OQgH5Z+FIrGp78DkdsOKEp4=
+  file_glob: true
+  file: marketplace-di/target/pentaho-marketplace-di-*.jar
+  on:
+    repo: HiromuHota/marketplace
+    tags: true
+  name: webSpoon/nightly
+  prerelease: true
