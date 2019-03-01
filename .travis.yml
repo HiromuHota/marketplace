@@ -9,9 +9,10 @@ script:
   - wget https://raw.githubusercontent.com/pentaho/maven-parent-poms/master/maven-support-files/settings.xml
   - mvn -s settings.xml clean package -pl marketplace-di
 before_deploy:
-- git config --local user.name "Hiromu Hota"
-- git config --local user.email "hiromu.hota@hal.hitachi.com"
-- git tag webspoon/nightly --force
+  - git config --local user.name "Hiromu Hota"
+  - git config --local user.email "hiromu.hota@hal.hitachi.com"
+  - export TRAVIS_TAG=webspoon/nightly
+  - git tag $TRAVIS_TAG --force
 deploy:
   provider: releases
   api_key:
