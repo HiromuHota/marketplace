@@ -16,9 +16,7 @@ before_deploy:
   - git config --local user.email "hiromu.hota@hal.hitachi.com"
   - export TRAVIS_TAG=webspoon/nightly
   - git tag $TRAVIS_TAG --force
-  - git remote add gh https://${GITHUB_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
-  - git push -f gh $TRAVIS_TAG
-  - git remote remove gh
+  - git push -f https://${GITHUB_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git $TRAVIS_TAG
 deploy:
   provider: releases
   api_key: $GITHUB_TOKEN
@@ -28,6 +26,7 @@ deploy:
   on:
     branch: webspoon-8.2
   name: webSpoon/nightly
+  body: Auto-build of $TRAVIS_BRANCH ($TRAVIS_COMMIT) by Travis CI on $(date +'%F %T %Z').
   prerelease: true
   overwrite: true
   tag_name: $TRAVIS_TAG
