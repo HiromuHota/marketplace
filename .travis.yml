@@ -10,7 +10,7 @@ cache:
 install: true
 script:
   - wget https://raw.githubusercontent.com/pentaho/maven-parent-poms/master/maven-support-files/settings.xml
-  - mvn -s settings.xml clean package -pl marketplace-di
+  - mvn -s settings.xml clean source:jar package -pl marketplace-di
 before_deploy:
   - git config --local user.name "Hiromu Hota"
   - git config --local user.email "hiromu.hota@hal.hitachi.com"
