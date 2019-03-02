@@ -16,6 +16,7 @@ before_deploy:
   - git config --local user.email "hiromu.hota@hal.hitachi.com"
   - export TRAVIS_TAG=webspoon/nightly
   - git tag $TRAVIS_TAG --force
+  - git push -f origin $TRAVIS_TAG
 deploy:
   provider: releases
   api_key:
