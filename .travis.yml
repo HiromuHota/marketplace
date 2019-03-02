@@ -16,11 +16,12 @@ before_deploy:
   - git config --local user.email "hiromu.hota@hal.hitachi.com"
   - export TRAVIS_TAG=webspoon/nightly
   - git tag $TRAVIS_TAG --force
-  - git push -f origin $TRAVIS_TAG
+  - git remote add gh https://${GITHUB_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
+  - git push -f gh $TRAVIS_TAG
+  - git remote remove gh
 deploy:
   provider: releases
-  api_key:
-    secure: V9bRzuQumqAGG+4zvR3EMF1/0MpDoZW47xYCu6FTYq1LstTrcxo+EwKO4t3fDTyCJDSR8MkTWt5V3bG5u545p7kT/WOTxWv1/INgyelxdyObZJrikvM0bEEDT06AWEYxFwFS08v9eqa0u+RZATFC0SzYc6kUtCUBWvUBogPufMcPPSZV6W1MBWATN8P8a1WGF+herA+11eGPXqE4ipVWzzEuO8d+QIbb0vOQLK050SUygDiKx8ZX8TiPQ91//mBDxS43YOWREzJSwHGIE3wHa6QflmSADDULKX7PiOW67WlxBllZ+SsrDEEtiSRS7/2svGbcwgMyextGWSya43ig+vaRBtdKc7o9zcy6yq5vFk8QlyHDx5kXOn/d3mrsmiBT9MpRWJE82fuHt3I7JUG8cTpLQB/XM9riMQQPgTNvIYwNZcS4kX8QDanF492icofgRHjljB1kPFGNsyphyVqIzgr+xw9+iBW0BioAwP8+wQvzxcGJt98AuNYxWhwdHw7YE2IoKwPK1Iyu7z6EmBJJlW4cmmsdHkvAwIbdY0sI1NksLDItI/V2Cb9iq+8zB7psa4VQGQ2tOxGlIAaVJzACyUrytpk0SGy9mhpAODHyFWewaN2c/LLVumxQsRDMlSK5sNwKTHEh6cFsxV0m4A83OQgH5Z+FIrGp78DkdsOKEp4=
+  api_key: $GITHUB_TOKEN
   file_glob: true
   file: marketplace-di/target/pentaho-marketplace-di-*.jar
   skip_cleanup: true
