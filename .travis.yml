@@ -1,3 +1,6 @@
+branches:
+  only:
+    - /^webspoon-.*$/
 language: java
 sudo: false
 jdk: oraclejdk8
@@ -22,6 +25,6 @@ deploy:
   skip_cleanup: true
   on:
     repo: HiromuHota/marketplace
-    branch: webspoon-8.2
+    branch: /^webspoon-.*$/
   name: webSpoon/nightly
   prerelease: true
