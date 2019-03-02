@@ -25,6 +25,6 @@ deploy:
   skip_cleanup: true
   on:
     repo: HiromuHota/marketplace
-    branch: /^webspoon-.*$/
+    branch: webspoon-8.2
   name: webSpoon/nightly
   prerelease: true
