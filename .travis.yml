@@ -28,3 +28,4 @@ deploy:
     branch: webspoon-8.2
   name: webSpoon/nightly
   prerelease: true
+  overwrite: true
